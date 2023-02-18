@@ -1,6 +1,11 @@
 export default class Component {
-  constructor(app) {
+  app;
+  props;
+  state;
+  constructor(app, props) {
     this.app = app;
+    this.props = props;
+
     this.setup();
     this.render();
     this.setEvent();
@@ -8,6 +13,7 @@ export default class Component {
 
   setup() {}
   setEvent() {}
+  mounted() {}
   template() { return ""; }
 
   addEvent(eventType, selector, callback){
@@ -20,6 +26,7 @@ export default class Component {
 
   render() {
     this.app.innerHTML = this.template();
+    this.mounted(); // render 이후에 mounted 실행.
   }
 
   setState(newState) {
